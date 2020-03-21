@@ -28,3 +28,13 @@ If the amount tendered is more than the cost of the item, display the number of 
 1. d
 1. d
 1. d
+
+### Minimal Viable Product(MVP)
+#### MVP: 
+	- Amount: 0.67, Tendered: 0.50 Error Message
+	- Amount: 0.67, Tendered: 1.00, Result: 1 quarter, 1 nickel, 3 pennies
+	- Amount: 0.59, Tendered: 1.00, Result: 1 quarter, 1 nickel, 1 penny
+	- Amount: 3.96, Tendered: 20.00, Result: 1 ten dollar bill, 1 five dollar bill, 1 one dollar bill, 4 pennies.
+	- Amount: any amount less than 20.00, Tendered: anything greater than amount: correct denominations for correct change. 
+#### MVP+
+#### MVP++
