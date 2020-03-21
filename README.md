@@ -1,7 +1,9 @@
 ## Make Change Project - Week 1 Skill Distillery
-### Java for SD26 created by Yettsy Knapp
+### Java program for SD26 created by Yettsy Knapp
 
 ### Overview 
+ - In the cash register we will calculate the amount of change returned to a customer based on the purchase price and the amount tendered.
+ 
 ### User Stories
 - User Story #1
 The user is prompted asking for the price of the item.
