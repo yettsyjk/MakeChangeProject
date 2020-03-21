@@ -50,14 +50,14 @@ public class MakeChangeApp {
 		cashTendered = sc.nextDouble();
 		
 		while(cashTendered < totalPrice) {
-			System.out.println("Hmm, Looks like customer provided "+ cashTendered+ " instead of "+ totalPrice);
+			System.out.println("Hmm, Looks like customer provided $"+ cashTendered+ " instead of $"+ totalPrice+ ". Please ask customer to provide sufficient change. ");
 			cashTendered = cashTendered + sc.nextDouble();
 			System.out.println("Total paid is : "+ cashTendered);
 		}
 		//calculate reimbursement for customer
 		printHeader();
 		cashBack = cashTendered - totalPrice;
-		System.out.printf("\n "+"Cash Total: "+cashTendered +"\nChange is: %.2f%n", cashBack);
+		System.out.printf("\n Total: "+ totalPrice + "\nCash Total: "+cashTendered +"\nChange is: %.2f%n", cashBack);
 		
 		
 		//calculate dollar bills to tender to customer
@@ -95,28 +95,28 @@ public class MakeChangeApp {
 		cashLeft = (cashBack - twenties * twentiesToCust - tens * tensToCust - fives * fivesToCust - ones * onesToCust - quarters * quartersToCust - nickles * nicklesToCust - pennies * penniesToCust);
 		
 		if(twenties > 0) {
-			System.out.println("Customer Paid $20.00: " + twenties + "\n");
+			System.out.println("Customer will be get $20.00: " + twenties + "\n");
 		}
 		else if(tens > 0) {
-			System.out.println("Customer Paid $10.00: " + tens + "\n");
+			System.out.println("Customer will be get $10.00: " + tens + "\n");
 		}
 		else if(fives > 0) {
-			System.out.println("Customer Paid $5.00: " + fives + "\n");
+			System.out.println("Customer will be get $5.00: " + fives + "\n");
 		}
 		else if(ones > 0) {
-			System.out.println("Customer Paid $1.00: " + ones + "\n");
+			System.out.println("Customer will be get $1.00: " + ones + "\n");
 		}
 		else if(quarters > 0) {
-			System.out.println("Customer Paid $0.25: " + quarters + "\n");
+			System.out.println("Remaining change $0.25: " + quarters + "\n");
 		}
 		else if(dimes > 0) {
-			System.out.println("Customer Paid $0.10: " + dimes + "\n");
+			System.out.println("Remaining change $0.10: " + dimes + "\n");
 		}
 		else if(nickles > 0) {
-			System.out.println("Customer Paid $0.05: " + nickles + "\n");
+			System.out.println("Remaining change $0.05: " + nickles + "\n");
 		}
 		else if(pennies > 0) {
-			System.out.println("Customer Paid $0.01: " + pennies + "\n");
+			System.out.println("Remaining change $0.01: " + pennies + "\n");
 		}
 		sc.close();
 		printReceipt();
