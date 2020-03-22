@@ -7,16 +7,15 @@ public class MakeChangeApp {
 
 	public static void main(String[] args) {
 		
-		getPrice();	
-	}
-	
-	public static double getPrice() {
 		/* The user is prompted asking for the price of the item. */
 		Scanner sc = new Scanner(System.in);
 		double totalPrice = 0.0;
 		double price = 0.0;
+		double cashTendered = 0.0;
+		
 		
 		System.out.print("Welcome to Corner Store. \n");
+		//prompt cashier to enter cash tendered by customer
 		System.out.println("Enter total price of each item:(0 to cancel order) ");
 		price = sc.nextDouble();
 		totalPrice  = totalPrice + price;
@@ -25,48 +24,40 @@ public class MakeChangeApp {
 		System.out.println("Add another one item at a time or 0 for total: ");
 		price = sc.nextDouble();
 		totalPrice  = totalPrice + price;
-		//display item total and cash total
+		//display item total cash total
 		System.out.printf("Total Amount Due: %.2f%n", totalPrice);
 		}
-		//prompt cashier to enter cash tendered by customer
-
-		getMoney();
-		return price;
+		double cashBack = getMoney(cashTendered, totalPrice);	
 	}
 	
-	
-	public static double getMoney() {
+	public static double getMoney(double cashTendered, double totalPrice) {
 		Scanner sc = new Scanner(System.in);
-
-		double cashTendered = 0.0;
-		double totalPrice = 0.0;
-		
+		double cashBack = 0.0;
+		while(cashTendered <= 0) {
 		//System.out.printf("\n Total: "+ totalPrice + "\nCash Total: "+ cashTendered +"\nChange is: %.2f%n", cashBack);
 		System.out.println("Enter amount to pay for your items: ");
 		cashTendered = cashTendered + sc.nextDouble();
 		
 		System.out.println("Total paid is : "+ cashTendered);
-		while(true) {
-			
-			if(cashTendered == 0) {
-				greetingBye();
-				break;
-			} else if(cashTendered <= 0) {
-				tooShort();
-			} else {
-				createChange(cashTendered, totalPrice);
-				break;
-			}
 		}
-
-		return cashTendered;
 		
+		if(cashTendered == totalPrice) {
+			greetingBye(totalPrice, cashTendered);
+				
+			}
+		else if(cashTendered <= totalPrice) {
+				tooShort();
+		} 
+		else if(cashTendered >= totalPrice){
+			createChange(cashBack);
+		} 
+		return cashTendered;
+	}	
 	
-	}
-	
-	public static double createChange(double cashTendered, double totalPrice){
+	public static double createChange(double cashBack){
 		Scanner sc = new Scanner(System.in);
-		double cashBack = (cashTendered - totalPrice);
+		double cashTendered = 0.0; 
+		double totalPrice = 0.0;
 		int twenty = 0;
 		int ten = 0;
 		int five = 0;
@@ -78,84 +69,106 @@ public class MakeChangeApp {
 		
 		System.out.printf("Total Price: $" + totalPrice + "\nCash Total: $"+ cashTendered + "\nChange is: $ %.2f%n", cashBack);
 		
-		while(cashTendered > 20) {
+		System.out.println("1: "+ cashBack);
+		while(cashBack > 20) {
 			twenty++;
 			cashBack = (cashBack - 20);
 			System.out.println(twenty);
 		} 
-		while(cashTendered > 10) {
+		System.out.println("2: "+ cashBack);
+		while(cashBack > 10) {
 			ten++;
-			cashTendered = cashTendered - 10;
+			cashBack = cashBack - 10;
 			System.out.println(ten);
 		}
-		while(cashTendered > 5) {
+		System.out.println("3: "+ cashBack);
+		while(cashBack > 5) {
 			five++;
-			cashTendered = cashTendered - 5;
+			cashBack = cashBack - 5;
 			System.out.println(five);
 		}
-		while(cashTendered >= 1) {
+		System.out.println("4: "+ cashBack);
+		while(cashBack >= 1) {
 			one++;
-			cashTendered = cashTendered - 1;
+			cashBack = cashBack - 1;
 			System.out.println(one);
 		}
-		while(cashTendered < 1.00 && cashTendered >= 0.25) {
+		System.out.println("5: "+ cashBack);
+		while(cashBack < 1.00 && cashBack >= 0.25) {
 			quarter++;
-			cashTendered = (int)((cashTendered - 0.25) % 0.25);
+			cashBack = (int)((cashBack - 0.25) % 0.25);
 			System.out.println(quarter);
 		}
-		while((cashTendered < 0.25) && (cashTendered >= 0.10)) {
+		System.out.println("6: "+ cashBack);
+		while((cashBack < 0.25) && (cashBack >= 0.10)) {
 			dime++;
-			cashTendered = (int)((cashTendered - 0.10) % 0.10);
+			cashBack = (int)((cashBack - 0.10) % 0.10);
 			System.out.println(dime);
 		}
-		cashTendered = (int)(Math.round(cashTendered * 100.0) / 100.0);
-		System.out.println(cashTendered);
-		while(cashTendered < 0.10 && cashTendered  >= 0.05 % 0.05) {
+		
+		cashBack = (int)(Math.round(cashBack * 100.0) / 100.0);
+		System.out.println("7: "+ cashBack);
+		while(cashBack < 0.10 && cashBack  >= 0.05 ) {
 			nickel++;
-			cashTendered = (int)((cashTendered - 0.05) % 0.05);
+			cashBack = (int)((cashBack - 0.05) % 0.05);
 			System.out.println(nickel);
 		}
-		cashTendered = (int)(Math.round(cashTendered * 100.0) / 100.0);
-		while(cashTendered < 0.05 && cashTendered >= 0.00) {
+		cashBack = (int)(Math.round(cashBack * 100.0) / 100.0);
+		
+		while(cashBack < 0.05 && cashBack >= 0.00) {
 			penny++;
-			cashTendered = (int)(cashTendered - 0.01);
+			cashBack = (int)(cashBack - 0.01);
 			System.out.println(penny);
 		}
+		//Testing results
 		System.out.println(" Change back: ");
 		if(twenty > 0) {
 			System.out.println(twenty + " twenty dollar bill, \n");
 		}
-		else if(ten > 0){
+		else {
+		}
+		if(ten > 0){
 			System.out.println(ten + " ten dollar bill, \n");
 		}
-		else if(five > 0) {
+		else {
+		}
+		if(five > 0) {
 			System.out.println(five + " five dollar bill, \n");
 		}
-		else if(one > 0) {
+		else {
+		}	if(one > 0) {
 			System.out.println(one + " one dollar bill, \n");
-		} else if(quarter > 1) {
+		} else {
+		}	if(quarter > 1) {
 			System.out.println(quarter + " quarters, ");
-		} else if(quarter == 1) {
+		} 
+		else if(quarter == 1) {
 			System.out.println(quarter + " quarter, 'n");
-		} else if(dime > 1) {
+		} else {
+		}	
+		if(dime > 1) {
 			System.out.println(dime + " dimes, \n");
 		} else if (dime == 1) {
 			System.out.println(dime + " dime, \n");
-		} else if(nickel > 1) {
-			System.out.println(nickel + " nickel, \n");
-		} else if(penny > 1) {
-			System.out.println(penny);
+		} else {
+		} if(nickel > 1) {
+			System.out.println(nickel + " nickels, \n");
+		} else if(nickel == 1){
+			System.out.println(nickel+ "nickel \n");
+		} else {
+		}
+		if(penny > 1) {
+			System.out.println(penny+ "pennies \n");
 		} else if(penny == 1)	{
 			System.out.println(penny + " penny.");
-		} else {
-			System.out.print(" Thank you. ");
+		} 
+		else {
+			System.out.print(" Thank you. ");	
 			
 		}
-		return cashTendered;
-		
+		return cashBack;
 	}
 
-	
 
 	public static void printHeader() {
 		System.out.println("/////////////////////////////////");
@@ -167,14 +180,17 @@ public class MakeChangeApp {
 	public static void printReceipt() {
 		System.out.println("//////// CORNER STORE ///////////");
 		System.out.println("/////////////////////////////////");
+		System.out.println(" Come Back To See Us Again! ");
 	}
-	public static void greetingBye() {
-		System.out.println("You provided exact change. Thanks most people don't these days.");
+	public static void greetingBye(double totalPrice, double cashTendered) {
+		System.out.println("You provided exact change. \nThanks most people don't these days.");
 		printHeader();
+		System.out.println("Total Items: $"+ totalPrice+ " \n");
+		System.out.println("Total Cash: $"+ cashTendered+ " \n");
 		printReceipt();
 	}
 	
 	public static void tooShort() {
-		System.out.println("Please provide more money or would you like to put something back:");
+		System.out.println("Hmm, Would you like to put something back? or Please provide more money. ");
 	}
 }
