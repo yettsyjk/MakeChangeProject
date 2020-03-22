@@ -20,7 +20,7 @@ public class MakeChangeApp {
 			totalPrice = totalPrice + price;
 			System.out.printf("Total Amount Due:$ %.2f%n", totalPrice);
 			}
-			//
+			
 			System.out.println("Attendant: Please Enter Amount Tendered by Customer: ($5 is 5.00):");
 			double cashTendered = sc.nextDouble();
 			
@@ -86,7 +86,7 @@ public class MakeChangeApp {
 		}
 		
 		public static void tooShort(double totalPrice, double cashTendered) {
-			System.out.println("Hmm, Would you like to put something back? or Please provide the remainig amount: $"+ (totalPrice - cashTendered));
+			System.out.println("Hmm, Would you like to put something back? or Please provide the remaining amount: $"+ (totalPrice - cashTendered));
 		}
 		
 		public static void printHeader() {
