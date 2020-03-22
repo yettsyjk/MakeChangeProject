@@ -35,14 +35,15 @@ If the amount tendered is more than the cost of the item, display the number of 
 
 ### Minimal Viable Product(MVP)
 #### MVP: 
-	- User will enter individual "scanned" item  and stop by enter "0" this will provide a result. 
-	- User will be prompted when not enough money is tendered.
-	- User will be prompted to enter correct tendered change.
+	- User(Attendant) will enter individual "tendered" item and stop by enter "0" this will provide a result. 
+	- User(Attendant) will be prompted when not enough money is tendered.
+	- User(Attendant) will be prompted to enter correct tendered change.
 	
 #### MVP+
-
+	- User(Attendant) will enter individual "tendered" item and stop by enter "0" this will provide a result.
+	- User(Attendant) can't receive bills larger than $30.00, provide message to customer that bill tendered was too large.
 
 ### License
 This program is licensed under the MIT license. 
 
-# Copyright (c)2020 Yettsy Knapp [LinkedIn](https://www.linkedin.com/in/yettsy-jo-knapp)
+## Copyright (c)2020 Yettsy Knapp [LinkedIn](https://www.linkedin.com/in/yettsy-jo-knapp)

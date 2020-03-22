@@ -6,15 +6,22 @@ import java.util.Scanner;
 public class MakeChangeApp {
 
 	public static void main(String[] args) {
-
+			double totalPrice = 0.0, price = 0.0;
 			Scanner sc = new Scanner(System.in);
 			System.out.print("Welcome to Corner Store. \n");
 			//User is prompted asking for the price of the item
 			System.out.print("Attendant: Please Enter Item Cost: ($2 is $2.00, $5 is $5.00)");
-			double totalPrice = sc.nextDouble();
+			price = sc.nextDouble();
+			totalPrice = totalPrice + price;
 			
+			while(price != 0) {
+			System.out.print("Attendant: Please Enter Another Item Cost OR, 0 for Total: ($2 is $2.00)");
+			price = sc.nextDouble();
+			totalPrice = totalPrice + price;
+			System.out.printf("Total Amount Due:$ %.2f%n", totalPrice);
+			}
 			//
-			System.out.println("Attendant: Please Enter Amount Tendered by Customer: ($5 is 5.00, $12 is $12.00):");
+			System.out.println("Attendant: Please Enter Amount Tendered by Customer: ($5 is 5.00):");
 			double cashTendered = sc.nextDouble();
 			
 			sc.close();
@@ -45,35 +52,35 @@ public class MakeChangeApp {
 			change = change % twenty;
 			printHeader();
 		
-			System.out.println("Thanks! Your change is: $" + cashBack + ".\nYou get " + convertTwenty + " twenty dollar bills.");
+			System.out.println("Thanks! Your change is: $" + cashBack + " \nYour change: " + convertTwenty + " twenty dollar bills.");
 			
 			int convertTen = change / ten;
 			change = change % ten;
-			System.out.println("You get " + convertTen + " ten dollar bills.");
+			System.out.println("Your change: " + convertTen + " ten dollar bills.");
 			
 			int convertFive = change / five;
 			change = change % five;
-			System.out.println("You get " + convertFive + " five dollar bills.");
+			System.out.println("Your change: " + convertFive + " five dollar bills.");
 			
 			int convertOne = change / one;
 			change = change % one;
-			System.out.println("You get " + convertOne + " one dollar bills.");
+			System.out.println("Your change: " + convertOne + " one dollar bills.");
 			
 			int convertQuarter = change / quarter;
 			change = change % quarter;
-			System.out.println("You get " + convertQuarter + " quarters.");
+			System.out.println("Your change: " + convertQuarter + " quarters.");
 			
 			int convertDime = change / dime;
 			change = change % dime;
-			System.out.println("You get " + convertDime + " dimes.");
+			System.out.println("Your change: " + convertDime + " dimes.");
 			
 			int convertNickel = change / nickel;
 			change = change % nickel;
-			System.out.println("You get " + convertNickel  + " nickels.");
+			System.out.println("Your change: " + convertNickel  + " nickels.");
 			
 			int convertPenny = change / penny;
 			change = change % penny;
-			System.out.println("You get " + convertPenny + " pennies.");
+			System.out.println("Your change: " + convertPenny + " pennies.");
 			printReceipt();
 			
 		}
