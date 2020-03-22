@@ -26,9 +26,11 @@ If the amount tendered is more than the cost of the item, display the number of 
 
 ### Lessons Learned
 1. Testing change result: Initial issue change would print as double instead of integer.
-1. d
-1. d
-1. d
+1. CashBack formula was returning precise decimals and wanted to investigate if changing
+ it to float instead of double would be better option for receipt.
+``double cashBack = cashTendered - totalPrice;``
+1. CreateChange() was were the calculations took place and most of the features occurred. 
+1. This was a fun program to create, the main issues were in the CreateChange() and had to re-write scale almost seven times.
 
 
 ### Minimal Viable Product(MVP)
