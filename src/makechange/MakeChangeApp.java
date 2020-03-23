@@ -1,6 +1,7 @@
 package makechange;
 
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class MakeChangeApp {
@@ -8,6 +9,7 @@ public class MakeChangeApp {
 	public static void main(String[] args) {
 			double totalPrice = 0.0, price = 0.0;
 			Scanner sc = new Scanner(System.in);
+			
 			System.out.print("Welcome to Corner Store. \n");
 			//User is prompted asking for the price of the item
 			System.out.print("Attendant: Please Enter Item Cost: ($2 is $2.00, $5 is $5.00)");
@@ -34,74 +36,87 @@ public class MakeChangeApp {
 				tooShort(totalPrice, cashTendered);
 		   //method for calculating amount tendered more than the cost of item 
 			} else if (cashTendered > totalPrice ){
-				createChange(cashBack);
+				createChange(cashBack, cashTendered, totalPrice);
 			} else {
 			//display message to customer when provided exact amount 
 				greetingBye(totalPrice, cashTendered, cashBack);
 			}
 		}
 
-		public static void createChange(double cashBack) {
+		public static void createChange(double cashBack, double cashTendered, double totalPrice) {
+			DecimalFormat twoDecimals = new DecimalFormat("#.00");
 			//scale down
-			int twenty = 2000, ten = 1000, five = 500, one = 100, quarter = 25, dime = 10, nickel = 5, penny = 1;
-			//Calculation to pennies and rounding down and decimal places
-			int change = (int)(Math.floor(cashBack * 100));
-			
-			int convertTwenty = change / twenty;
-			//use division and modulo to get remainder
-			change = change % twenty;
+			cashBack = cashTendered - totalPrice + 0.0005;
+
 			printHeader();
-		
-			System.out.println("Thanks! Your change is: $" + cashBack + " \nYour change: " + convertTwenty + " twenty dollar bills.");
+			System.out.println("Thanks! Your change is: $" + twoDecimals.format(cashBack));
+			if(cashBack >= 20.00) {
+				int twenty = (int)(cashBack / 20);
+				System.out.println("Change: "+ twenty + ": Twenty Dollar Bill(s)");
+				cashBack -= twenty * 20;
+			}
+			if(cashBack >= 10.00) {
+				int ten = (int)(cashBack / 10);
+				System.out.println("Change: "+ ten + ": Ten Dollar Bill(s)");
+				cashBack -= ten * 10;
+			}
+			if(cashBack >= 5.00) {
+				int five = (int)(cashBack / 5);
+				System.out.println("Change: "+ five + ": Five Dollar Bill(s)");
+				cashBack -= five * 5;
+			}
+			if(cashBack >= 1.00) {
+				int one = (int)(cashBack / 1.00);
+				System.out.println("Change: "+ one+ ": One Dollar Bill(s)");
+				cashBack -= one * 1;
+			} else {
+				
+			}
+			if(cashBack >= 0.25) {
+				int quarter = (int)(cashBack / 0.25);
+				System.out.println("Change: "+ quarter+ ": Quarter(s)");
+				cashBack -= quarter * 0.25;
+			}
+			if(cashBack >= 0.10) {
+				int dime = (int)(cashBack / 0.10);
+				System.out.println("Change: "+ dime + ": Dime(s)");
+				cashBack -= dime* 0.10;
+			}
+			if(cashBack >= 0.05) {
+				int nickel = (int)(cashBack / 0.05);
+				System.out.println("Change: "+ nickel + ": Nickel(s)");
+				cashBack -=  nickel * 0.05;
+			}
+			if(cashBack >= 0.01) {
+				int penny = (int)(cashBack / 0.01);
+				System.out.println("Change: "+ penny+ ": Penny(ies)");
+				cashBack -=  penny * 0.01;
+			}
 			
-			int convertTen = change / ten;
-			change = change % ten;
-			System.out.println("Your change: " + convertTen + " ten dollar bills.");
-			
-			int convertFive = change / five;
-			change = change % five;
-			System.out.println("Your change: " + convertFive + " five dollar bills.");
-			
-			int convertOne = change / one;
-			change = change % one;
-			System.out.println("Your change: " + convertOne + " one dollar bills.");
-			
-			int convertQuarter = change / quarter;
-			change = change % quarter;
-			System.out.println("Your change: " + convertQuarter + " quarters.");
-			
-			int convertDime = change / dime;
-			change = change % dime;
-			System.out.println("Your change: " + convertDime + " dimes.");
-			
-			int convertNickel = change / nickel;
-			change = change % nickel;
-			System.out.println("Your change: " + convertNickel  + " nickels.");
-			
-			int convertPenny = change / penny;
-			change = change % penny;
-			System.out.println("Your change: " + convertPenny + " pennies.");
 			printReceipt();
 			
 		}
 		
 		public static void tooShort(double totalPrice, double cashTendered) {
-			System.out.println("Hmm, Would you like to put something back? or Please provide the remaining amount: $"+ (totalPrice - cashTendered));
+			
+			Scanner sc = new Scanner(System.in);
+
+			System.out.println("Hmm, Would you like to put something back? or Please provide the remaining amount: $"+ (totalPrice - cashTendered));		
 		}
 		
 		public static void printHeader() {
-			System.out.println("/////////////////////////////////");
-			System.out.println("//////// CORNER STORE ///////////");
-			System.out.println("////////  DENVER, CO  ///////////");
+			System.out.println("///////////////////////////////////////");
+			System.out.println("/////////// CORNER STORE //////////////");
+			System.out.println("///////////  DENVER, CO  //////////////");
 		}
 		
 		public static void printReceipt() {
-			System.out.println("//////// CORNER STORE ///////////");
-			System.out.println("/////////////////////////////////");
-			System.out.println(" Come Back To See Us Again! ");
+			System.out.println("////////// CORNER STORE ///////////////");
+			System.out.println("///////////////////////////////////////");
+			System.out.println("      Come Back To See Us Again!       ");
 		}
 		public static void greetingBye(double totalPrice, double cashTendered, double cashBack) {
-			System.out.println("You provided exact change. \nI don't see that happen much these days.");
+			System.out.println("You provided exact change. \nThat doesn't happen much these days.");
 			printHeader();
 			System.out.println("Total Items: $"+ totalPrice+ " \n");
 			System.out.println("Total Cash: $"+ cashTendered+ " \n");
